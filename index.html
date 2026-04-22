@@ -226,14 +226,14 @@ function renderKPIs(rows,m){
   const T=D.totals.TOTAL;
   const ad=rows.filter(r=>r.TOTAL&&r.TOTAL.pct_tim>=1).length;
   const at=rows.filter(r=>r.TOTAL&&r.TOTAL.pct_tim<1).length;
-  const gap=T.dir*m.pct_mes-T.real;
+  const gap=T.dir-T.real;
   document.getElementById('kpis').innerHTML=
     '<div class="kpi"><div class="kpi-v" style="color:'+(T.pct_tim>=1?'var(--gn)':'var(--rd)')+'">'+(T.pct_tim*100).toFixed(1)+'%</div><div class="kpi-l">Timing Total</div></div>'+
     '<div class="kpi"><div class="kpi-v" style="color:var(--gn)">'+ad+'</div><div class="kpi-l">Adelantadas</div></div>'+
     '<div class="kpi"><div class="kpi-v" style="color:var(--rd)">'+at+'</div><div class="kpi-l">Atrasadas</div></div>'+
     '<div class="kpi"><div class="kpi-v" style="color:var(--ac)">'+fd(T.real)+'</div><div class="kpi-l">Venta Real</div></div>'+
     '<div class="kpi"><div class="kpi-v" style="color:var(--ts)">'+fm(T.dir)+'</div><div class="kpi-l">Meta DIR</div></div>'+
-    '<div class="kpi"><div class="kpi-v" style="color:'+(gap>0?'var(--rd)':'var(--gn)')+'">'+(gap>0?'−':'+')+' '+fm(Math.abs(gap))+'</div><div class="kpi-l">Brecha</div></div>';
+    '<div class="kpi"><div class="kpi-v" style="color:'+(gap>0?'var(--rd)':'var(--gn)')+'">'+fm(Math.abs(gap))+'</div><div class="kpi-l">Falta p/ Meta</div></div>';
 }
 
 function renderFilters(m){
